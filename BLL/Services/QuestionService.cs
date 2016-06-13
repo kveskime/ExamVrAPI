@@ -72,7 +72,11 @@ namespace BLL.Services
             this._questionRepository.Delete(questionId);
             this._questionRepository.SaveChanges();
         }
-
+        //TODO: Question filtering
+        public List<QuestionFullDTO> FilterQuestionList(string filter)
+        {
+            return _questionRepository.All.Where(a => a.Title.ToLower().Contains(filter)).Select(b => _questionFactory.CreateFullDTO(b)).ToList();
+        }
         #endregion
         #region Answers
 
