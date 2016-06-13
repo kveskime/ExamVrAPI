@@ -41,6 +41,18 @@ namespace WebAPI.Controllers.Api
             return Ok(questionDTO);
         }
 
+        [Route("FilteredByTitleList/{filter}")]
+        [HttpGet]
+        public IHttpActionResult FilteredByTitleList(string filter)
+        {
+            return Ok(_questionService.FilteredByTitleList(filter));
+        }
+        [Route("FilteredByDescriptionList/{filter}")]
+        [HttpGet]
+        public IHttpActionResult FilteredByDescriptionList(string filter)
+        {
+            return Ok(_questionService.FilteredByDescriptionList(filter));
+        }
         // POST: api/Questions
         public IHttpActionResult Post([FromBody]QuestionFullDTO value)
         {

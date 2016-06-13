@@ -82,7 +82,7 @@ namespace BLL.Services
 
         public List<AnswerFullDTO> AllAnswers()
         {
-            return _answerRepository.All.Select(x=> this._answerFactory.CreateFullDTO(x)).ToList();
+            return _answerRepository.All.Select(x => this._answerFactory.CreateFullDTO(x)).ToList();
         }
         public AnswerFullDTO GetAnswerById(int id)
         {
@@ -114,10 +114,24 @@ namespace BLL.Services
 
         public List<AnswerFullDTO> FilterList(string filter)
         {
-             return _answerRepository.All.Where(a => a.Title.ToLower().Contains(filter)).Select(b=> _answerFactory.CreateFullDTO(b)).ToList();
-        } 
+            return _answerRepository.All.Where(a => a.Title.ToLower().Contains(filter)).Select(b => _answerFactory.CreateFullDTO(b)).ToList();
+        }
         #endregion
 
+        public List<QuestionFullDTO> FilteredByTitleList(string filter)
+        {
+            return
+                _questionRepository.All.Where(a => a.Title.ToLower().Contains(filter.ToLower()))
+                    .Select(b => _questionFactory.CreateFullDTO(b))
+                    .ToList();
+        }
 
+        public List<QuestionFullDTO> FilteredByDescriptionList(string filter)
+        {
+            return
+        _questionRepository.All.Where(a => a.Description.ToLower().Contains(filter.ToLower()))
+        .Select(b => _questionFactory.CreateFullDTO(b))
+        .ToList();
+        }
     }
 }
